@@ -37,15 +37,21 @@ def play_game():
     shot_counter = 0
 
     while not b.all_ships_sunk():
+        
+        #choose where to shoot next. At the moment this is just random selection.
         shot_x = random.randint(0,9)
         shot_y = random.randint(0,9)
 
+        #make sure you're not shooting at a cell you've already shot at.
         while shots[shot_x][shot_y]:
             shot_x = random.randint(0,9)
             shot_y = random.randint(0,9)
 
+        #mark your shot
         shots[shot_x][shot_y] = 1
         shot_counter += 1
+        
+        #the shoot method returns T/F if it's a hit. Not doing anything with it at the moment.
         is_hit = b.shoot(shot_x,shot_y)
         #b.display()
         #sleep(0.3)
